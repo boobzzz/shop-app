@@ -1,0 +1,18 @@
+.Header {
+    padding: 0.5em 1.5em;
+    background-color: lightslategray;
+}
+    .Header span {
+        font-weight: 800;
+        font-size: 1.5em;
+        color: lightsteelblue;
+    }
+    .Header span + span {
+        margin-left: 1em;
+        font-weight: 100;
+        color: lightblue;
+    }
+    .Header span:last-child {
+        display: flex;
+        align-items: center;
+    }

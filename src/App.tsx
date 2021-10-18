@@ -1,8 +1,13 @@
-import React from 'react';
+import { CardList } from './components/CardList';
+
+import { Header } from './components/Header';
 
 const App: React.FC = () => {
   return (
-    <h1>Products</h1>
+    <>
+      <Header />
+      <CardList />
+    </>
   );
 }
 

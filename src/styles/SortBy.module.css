@@ -1,0 +1,9 @@
+.Container {
+    display: flex;
+    align-items: center;
+}
+    .Container span {
+        font-weight: 400;
+        font-size: 1em !important;
+        color: lightsteelblue !important;
+    }
