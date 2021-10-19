@@ -1,37 +1,59 @@
 import { Reducer } from "redux";
-import { Product } from "../types/types";
+import { Product } from "../types/BaseItem";
+import { ActionTypes } from "../types/ActionTypes";
 import { AppState, KnownActions } from "./store";
 
 const initialState: AppState = {
-    isLoading: true,
+    isLoading: false,
     error: "",
     products: [],
+    selected: {
+        imageUrl: "",
+        name: "",
+        count: 0,
+    },
     sortBy: "az",
 };
 
-export const productsReducer: Reducer<
-    AppState, KnownActions
-> = (state = initialState, action): AppState => {
+export const productsReducer: Reducer<AppState, KnownActions> =
+(state = initialState, action): AppState => {
     const { type, payload } = action;
 
     switch (type) {
-        case "GET_PRODUCTS":
+        case ActionTypes.LOADING:
             return {
                 ...state,
-                isLoading: false,
-                products: payload as Product[],
+                isLoading: payload as boolean,
+                error: "",
             };
-        case "ERROR":
+        case ActionTypes.ERROR:
             return {
                 ...state,
-                isLoading: false,
                 error: payload as string,
             };
-        case "SORT_BY":
+        case ActionTypes.SORT_BY:
             return {
                 ...state,
                 sortBy: payload as string,
-            }
+            };
+        case ActionTypes.GET_PRODUCTS:
+            return {
+                ...state,
+                products: payload as Product[],
+            };
+        case ActionTypes.GET_PRODUCT:
+            return {
+                ...state,
+                selected: payload as Product,
+            };
+        case ActionTypes.ADD_PRODUCT:
+            return {
+                ...state,
+                products: [
+                    ...state.products,
+                    (payload as Product)
+                ],
+            };
         default:
             return state;
     }

@@ -1,11 +1,11 @@
 export interface Product {
-    id: string,
+    id?: string,
     imageUrl: string,
     name: string,
     count: number,
-    size: Size,
-    weight: string,
-    comments: string[]
+    size?: Size,
+    weight?: string,
+    comments?: string[]
 }
 
 interface Size {

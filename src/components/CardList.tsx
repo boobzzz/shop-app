@@ -5,9 +5,10 @@ import { List, Card } from "antd";
 import "antd/dist/antd.css";
 
 import { getError, getIsLoading, getProducts, getSorted } from "../store/selectors";
-import { AppDispatch, AppState } from "../store/store";
-import { fetchProducts } from "../store/middlewares";
-import { Product } from "../types/types";
+import { AppDispatch, AppState, AsyncActionType } from "../store/store";
+import { fetchApi } from "../store/middleware";
+import { Product } from "../types/BaseItem";
+import { ActionTypes } from "../types/ActionTypes";
 import classes from "../styles/CardList.module.css";
 
 const { Meta } = Card;
@@ -16,9 +17,8 @@ const CardList: FC<CardListStateProps & CardListDispatchProps> = (props) => {
     const { isLoading, error, products, sortBy, getAllProducts } = props;
 
     useEffect(() => {
-        getAllProducts("http://localhost:8000/products");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        getAllProducts(ActionTypes.GET_PRODUCTS, "http://localhost:8000/products");
+    }, [getAllProducts]);
 
     if (isLoading) return <div>...loading</div>;
 
@@ -82,7 +82,7 @@ const mapStateToProps = (state: AppState) => {
 
 const mapDispatchToProps = (dispatch: AppDispatch) => {
     return {
-        getAllProducts: (url: string) => dispatch(fetchProducts(url)),
+        getAllProducts: (type: AsyncActionType, url: string) => dispatch(fetchApi(type, url)),
     }
 }
 
@@ -97,10 +97,5 @@ interface CardListStateProps {
 }
 
 interface CardListDispatchProps {
-    getAllProducts: (url: string) => Promise<void>;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-interface CardListOwnProps {
-    ownprop: any;
+    getAllProducts: (type: AsyncActionType, url: string) => Promise<void>;
 }

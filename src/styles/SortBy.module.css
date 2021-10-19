@@ -5,6 +5,7 @@
     .Container > span {
         margin-right: 0.5em;
         font-weight: 100 !important;
+        color: lightblue !important;
     }
 
 .Select {

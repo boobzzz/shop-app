@@ -1,0 +1,9 @@
+export enum ActionTypes {
+    LOADING = "LOADING",
+    ERROR = "ERROR",
+    GET_PRODUCTS = "GET_PRODUCTS",
+    GET_PRODUCT = "GET_PRODUCT",
+    ADD_PRODUCT = "ADD_PRODUCT",
+    REMOVE_PRODUCT = "REMOVE_PRODUCT",
+    SORT_BY = "SORT_BY"
+}

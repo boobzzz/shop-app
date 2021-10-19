@@ -15,7 +15,7 @@ const SortBy: FC<CardListDispatchProps> = ({ sortBy }) => {
 
     return (
         <div className={classes.Container}>
-            <span>Sort by:</span>
+            <span>sort by:</span>
             <Select
                 className={classes.Select}
                 onChange={handleChange}
