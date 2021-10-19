@@ -1,12 +1,16 @@
-import { Select } from 'antd';
+import { FC } from "react";
+import { Select } from "antd";
+import { connect } from "react-redux";
+import { AppDispatch } from "../store/store";
 
+import { sortBy } from "../store/actions";
 import classes from "../styles/SortBy.module.css";
 
 const { Option } = Select;
 
-export const SortBy: React.FC = () => {
-    const handleChange = () => {
-
+const SortBy: FC<CardListDispatchProps> = ({ sortBy }) => {
+    const handleChange = (value: string) => {
+        sortBy(value);
     }
 
     return (
@@ -22,4 +26,17 @@ export const SortBy: React.FC = () => {
             </Select>
         </div>
     );
+}
+
+const mapDispatchToProps = (dispatch: AppDispatch) => {
+    return {
+        sortBy: (value: string) => dispatch(sortBy(value)),
+    }
+}
+
+export default connect(null, mapDispatchToProps)(SortBy);
+
+
+interface CardListDispatchProps {
+    sortBy: (value: string) => void;
 }

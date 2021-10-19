@@ -4,7 +4,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import Modal from 'antd/lib/modal/Modal';
 import 'antd/dist/antd.css';
 
-import { SortBy } from './SortBy';
+import SortBy from './SortBy';
 import { NewItemForm } from './NewItemForm';
 import classes from '../styles/Header.module.css';
 

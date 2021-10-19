@@ -1,7 +1,8 @@
-// export const uploadAction = (file) => storeFile(file)
-// export const submitAction = (data) => storeData(data)
-// export const removeAction = (data) => removeData(data)
-// export const getAction = (products) => ({ type: 'GET_PRODUCTS', payload: products })
-// export const pinAction = (item) => ({ type: 'PIN_ITEM', payload: item })
-// export const searchAction = (value) => ({ type: 'SEARCH_ITEM', payload: value })
-export const disableAction = (value: boolean) => ({ type: 'SET_DISABLED', payload: value })
+import { SortByAction } from "./store";
+
+export const sortBy: (param: string) => SortByAction = (value: string) => (
+    {
+        type: "SORT_BY",
+        payload: value
+    }
+);

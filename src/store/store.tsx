@@ -10,6 +10,7 @@ export interface AppState {
     isLoading: boolean;
     error: string;
     products: Product[];
+    sortBy: string;
 }
 
 export interface ProductsAction extends Action {
@@ -22,5 +23,10 @@ export interface ErrorAction extends Action {
     payload: string;
 }
 
-export type KnownActions = ProductsAction | ErrorAction;
+export interface SortByAction extends Action {
+    type: "SORT_BY";
+    payload: string;
+}
+
+export type KnownActions = ProductsAction | ErrorAction | SortByAction;
 export type AppDispatch = ThunkDispatch<AppState, any, KnownActions>;

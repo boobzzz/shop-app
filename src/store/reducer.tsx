@@ -6,6 +6,7 @@ const initialState: AppState = {
     isLoading: true,
     error: "",
     products: [],
+    sortBy: "az",
 };
 
 export const productsReducer: Reducer<
@@ -26,6 +27,11 @@ export const productsReducer: Reducer<
                 isLoading: false,
                 error: payload as string,
             };
+        case "SORT_BY":
+            return {
+                ...state,
+                sortBy: payload as string,
+            }
         default:
             return state;
     }
