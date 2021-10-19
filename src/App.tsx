@@ -1,14 +1,13 @@
-import { CardList } from './components/CardList';
-
-import { Header } from './components/Header';
+import { Header } from "./components/Header";
+import CardList from "./components/CardList";
 
 const App: React.FC = () => {
-  return (
-    <>
-      <Header />
-      <CardList />
-    </>
-  );
+    return (
+        <>
+            <Header />
+            <CardList />
+        </>
+    );
 }
 
 export default App;

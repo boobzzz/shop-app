@@ -2,8 +2,18 @@
     display: flex;
     align-items: center;
 }
-    .Container span {
-        font-weight: 400;
+    .Container > span {
+        margin-right: 0.5em;
+        font-weight: 100 !important;
+    }
+
+.Select {
+    display: flex;
+    align-items: center;
+    width: 100px;
+}
+    .Select span {
+        font-weight: 600;
         font-size: 1em !important;
         color: lightsteelblue !important;
     }

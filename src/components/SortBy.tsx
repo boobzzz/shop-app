@@ -1,30 +1,25 @@
-import { Menu, Dropdown, Button } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
+import { Select } from 'antd';
 
 import classes from "../styles/SortBy.module.css";
 
+const { Option } = Select;
+
 export const SortBy: React.FC = () => {
-    const menu = (
-        <Menu>
-            <Menu.Item>
-                <a href="/" onClick={e => e.preventDefault()}>
-                    a-z
-                </a>
-            </Menu.Item>
-            <Menu.Item>
-                <a href="/" onClick={e => e.preventDefault()}>
-                    count
-                </a>
-            </Menu.Item>
-        </Menu>
-    );
+    const handleChange = () => {
+
+    }
 
     return (
-        <Dropdown overlay={menu}>
-            <Button className={classes.Container}>
-                SORT BY
-                <DownOutlined />
-            </Button>
-        </Dropdown>
+        <div className={classes.Container}>
+            <span>Sort by:</span>
+            <Select
+                className={classes.Select}
+                onChange={handleChange}
+                defaultValue="az"
+                showSearch={false}>
+                <Option value="az">a-z</Option>
+                <Option value="count">count</Option>
+            </Select>
+        </div>
     );
 }

@@ -1,63 +1,28 @@
+import { FC, useEffect } from "react";
+import { connect } from "react-redux";
+import { EditOutlined, EllipsisOutlined, DeleteOutlined } from "@ant-design/icons";
 import { List, Card } from "antd";
-import { EditOutlined, EllipsisOutlined, DeleteOutlined } from '@ant-design/icons';
-import 'antd/dist/antd.css';
+import "antd/dist/antd.css";
 
-import classes from "../styles/List.module.css";
-
-const data = [
-    {
-        "id": 1,
-        "imageUrl": "https://images.unsplash.com/photo-1597043851759-3b383a6d1c14?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80",
-        "name": "Red wine",
-        "count": 4,
-        "size": {
-            "width": 200,
-            "height": 200
-        },
-        "weight": "1000g",
-        "comments": ["CommentModel", "CommentModel"]
-    },
-    {
-        "id": 2,
-        "imageUrl": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2073&q=80",
-        "name": "Cheese",
-        "count": 3,
-        "size": {
-        "width": 200,
-        "height": 200
-        },
-        "weight": "1000g",
-        "comments": ["CommentModel", "CommentModel"]
-    },
-    {
-        "id": 3,
-        "imageUrl": "https://images.unsplash.com/photo-1586765501019-cbe3973ef8fa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2068&q=80",
-        "name": "Bread",
-        "count": 1,
-        "size": {
-            "width": 200,
-            "height": 200
-        },
-        "weight": "1000g",
-        "comments": ["CommentModel", "CommentModel"]
-    },
-    {
-        "id": 4,
-        "imageUrl": "https://images.unsplash.com/photo-1596793393770-82081fca1471?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80",
-        "name": "Milk",
-        "count": 1,
-        "size": {
-            "width": 200,
-            "height": 200
-        },
-        "weight": "1000g",
-        "comments": ["CommentModel", "CommentModel"]
-    },
-];
+import { getError, getIsLoading, getProducts } from "../store/selectors";
+import { AppDispatch, AppState } from "../store/store";
+import { fetchProducts } from "../store/middlewares";
+import { Product } from "../types/types";
+import classes from "../styles/CardList.module.css";
 
 const { Meta } = Card;
 
-export const CardList: React.FC = () => {
+const CardList: FC<CardListStateProps & CardListDispatchProps> = (props) => {
+    const { isLoading, error, products, getAllProducts } = props;
+
+    useEffect(() => {
+        getAllProducts("http://localhost:8000/products");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    if (isLoading) return <div>...loading</div>;
+
+    if (error) return <div>{error}</div>;
 
     return (
         <div className={classes.Container}>
@@ -71,9 +36,9 @@ export const CardList: React.FC = () => {
                     xl: 6,
                     xxl: 3,
                 }}
-                dataSource={data}
+                dataSource={products}
                 renderItem={item => (
-                    <List.Item>
+                    <List.Item key={item.id}>
                         <Card
                             cover={
                                 <img
@@ -95,4 +60,36 @@ export const CardList: React.FC = () => {
             />
         </div>
     );
+}
+
+const mapStateToProps = (state: AppState) => {
+    return {
+        isLoading: getIsLoading(state),
+        error: getError(state),
+        products: getProducts(state),
+    }
+}
+
+const mapDispatchToProps = (dispatch: AppDispatch) => {
+    return {
+        getAllProducts: (url: string) => dispatch(fetchProducts(url)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardList);
+
+
+interface CardListStateProps {
+    isLoading: boolean;
+    error: string;
+    products: Product[];
+}
+
+interface CardListDispatchProps {
+    getAllProducts: (url: string) => Promise<void>;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+interface CardListOwnProps {
+    ownprop: any;
 }
