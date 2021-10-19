@@ -5,10 +5,10 @@ import { List, Card } from "antd";
 import "antd/dist/antd.css";
 
 import { getError, getIsLoading, getProducts, getSorted } from "../store/selectors";
-import { AppDispatch, AppState, AsyncActionType } from "../store/store";
+import { AppDispatch, AppState } from "../store/store";
 import { fetchApi } from "../store/middleware";
+import { ActionTypes, AsyncActionType } from "../types/ActionTypes";
 import { Product } from "../types/BaseItem";
-import { ActionTypes } from "../types/ActionTypes";
 import classes from "../styles/CardList.module.css";
 
 const { Meta } = Card;

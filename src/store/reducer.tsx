@@ -1,7 +1,9 @@
 import { Reducer } from "redux";
+
 import { Product } from "../types/BaseItem";
+import { KnownActions } from "./actions";
 import { ActionTypes } from "../types/ActionTypes";
-import { AppState, KnownActions } from "./store";
+import { AppState } from "./store";
 
 const initialState: AppState = {
     isLoading: false,

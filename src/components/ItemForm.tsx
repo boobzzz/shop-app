@@ -1,9 +1,10 @@
 import { FC } from "react";
-import { Button, Form, Input, InputNumber } from "antd";
-import { ActionTypes } from "../types/ActionTypes";
-import { fetchApi } from "../store/middleware";
-import { AppDispatch, AsyncActionType } from "../store/store";
 import { connect } from "react-redux";
+import { Button, Form, Input, InputNumber } from "antd";
+
+import { fetchApi } from "../store/middleware";
+import { AppDispatch } from "../store/store";
+import { ActionTypes, AsyncActionType } from "../types/ActionTypes";
 
 const layout = {
     labelCol: { span: 8 },
