@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 import { connect } from "react-redux";
-import { List } from "antd";
+import { List, Modal } from "antd";
 import "antd/dist/antd.css";
 
 import CardItem from "./CardItem";
@@ -11,9 +11,32 @@ import { ActionTypes, AsyncActionType } from "../types/ActionTypes";
 import { Product } from "../types/BaseItem";
 import { PRODS_EP } from "../constants/endpoints";
 import classes from "../styles/CardList.module.css";
+import { ItemForm } from "./ItemForm";
 
-const CardList: FC<CardListStateProps & CardListDispatchProps> = (props) => {
-    const { isLoading, error, products, sortBy, getAllProducts } = props;
+const CardList: FC<CardListStateProps & CardListDispatchProps & CardListOwnProps> = (props) => {
+    const {
+        isLoading,
+        error,
+        products,
+        sortBy,
+        isModalVisible,
+        getAllProducts,
+        toggleModal,
+        addNewItem
+    } = props;
+
+    const handleCancel = () => {
+        toggleModal(false);
+    }
+
+    const addNewProduct = (values: Product) => {
+        const options = {
+            method: "POST",
+            body: values
+        };
+
+        addNewItem(ActionTypes.ADD_PRODUCT, PRODS_EP, options);
+    }
 
     useEffect(() => {
         getAllProducts(ActionTypes.GET_PRODUCTS, PRODS_EP);
@@ -23,8 +46,6 @@ const CardList: FC<CardListStateProps & CardListDispatchProps> = (props) => {
 
     if (error) return <div>{error}</div>;
 
-    console.log(products);
-    
     const prodsAZCopy = JSON.parse(JSON.stringify(products));
     const prodsCountCopy = JSON.parse(JSON.stringify(products));
     const sortedByAZ = prodsAZCopy.sort((p1: Product, p2: Product) =>
@@ -35,25 +56,41 @@ const CardList: FC<CardListStateProps & CardListDispatchProps> = (props) => {
     );
 
     return (
-        <div className={classes.Container}>
-            <List
-                grid={{
-                    gutter: 16,
-                    xs: 1,
-                    sm: 2,
-                    md: 4,
-                    lg: 4,
-                    xl: 6,
-                    xxl: 3,
-                }}
-                dataSource={sortBy === "az" ? sortedByAZ : sortedByCount}
-                renderItem={(item: Product) => (
-                    <List.Item key={item.id}>
-                        <CardItem item={item} />
-                    </List.Item>
-                )}
-            />
-        </div>
+        <>
+            <div className={classes.Container}>
+                <List
+                    grid={{
+                        gutter: 16,
+                        xs: 1,
+                        sm: 2,
+                        md: 4,
+                        lg: 4,
+                        xl: 6,
+                        xxl: 3,
+                    }}
+                    dataSource={sortBy === "az" ? sortedByAZ : sortedByCount}
+                    renderItem={(item: Product) => (
+                        <List.Item key={item.id}>
+                            <CardItem item={item} />
+                        </List.Item>
+                    )}
+                />
+            </div>
+            <Modal
+                title="New Product"
+                visible={isModalVisible}
+                onCancel={handleCancel}
+                footer={null}
+            >
+                <ItemForm
+                    initValues={{
+                        imageUrl: "",
+                        name: "",
+                    } as Product}
+                    toggleModal={toggleModal}
+                    updateProduct={addNewProduct} />
+            </Modal>
+        </>
     );
 }
 
@@ -69,6 +106,9 @@ const mapStateToProps = (state: AppState) => {
 const mapDispatchToProps = (dispatch: AppDispatch) => {
     return {
         getAllProducts: (type: AsyncActionType, url: string) => dispatch(fetchApi(type, url)),
+        addNewItem: (type: AsyncActionType, url: string, options: {}) =>
+            dispatch(fetchApi(type, url, options)
+        ),
     }
 }
 
@@ -84,4 +124,10 @@ interface CardListStateProps {
 
 interface CardListDispatchProps {
     getAllProducts: (type: AsyncActionType, url: string) => Promise<void>;
+    addNewItem: (type: AsyncActionType, url: string, options: {}) => Promise<void>;
+}
+
+interface CardListOwnProps {
+    isModalVisible: boolean;
+    toggleModal: (isVisible: boolean) => void;
 }

@@ -1,19 +1,35 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { connect } from "react-redux";
 import { Card, Modal } from "antd";
 import { EditOutlined, EllipsisOutlined, DeleteOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 
+import { ItemForm } from "./ItemForm";
 import { AppDispatch } from "../store/store";
+import { fetchApi } from "../store/middleware";
 import { ActionTypes, AsyncActionType } from "../types/ActionTypes";
 import { Product } from "../types/BaseItem";
-import { fetchApi } from "../store/middleware";
 import { PRODS_EP } from "../constants/endpoints";
 
 const { Meta } = Card;
 const { confirm } = Modal;
 
-const CardItem: FC<CardItemDispatchProps & CardItemOwnProps> = ({ item, removeItem }) => {
+const CardItem: FC<CardItemDispatchProps & CardItemOwnProps> = ({ item, updateItem, removeItem }) => {
+    const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    }
+
+    const updateProduct = (values: Product) => {
+        const options = {
+            method: "PUT",
+            body: values,
+        }
+        
+        updateItem(ActionTypes.UPDATE_PRODUCT, `${PRODS_EP}/${item.id}`, options);
+    }
+
     const removeProduct = () => {
         const options = {
             method: "DELETE",
@@ -35,22 +51,38 @@ const CardItem: FC<CardItemDispatchProps & CardItemOwnProps> = ({ item, removeIt
     }
 
     return (
-        <Card
-            cover={ <img alt="example" src={item.imageUrl} /> }
-            actions={[
-                <EllipsisOutlined key="ellipsis" />,
-                <EditOutlined key="edit" />,
-                <DeleteOutlined key="delete" onClick={showDeleteConfirm} />,
-            ]}
-            hoverable
-        >
-            <Meta title={item.name} />
-        </Card>
+        <>
+            <Card
+                cover={<img alt="example" src={item.imageUrl} />}
+                actions={[
+                    <EllipsisOutlined key="ellipsis" />,
+                    <EditOutlined key="edit" onClick={() => setIsModalVisible(true)} />,
+                    <DeleteOutlined key="delete" onClick={showDeleteConfirm} />,
+                ]}
+                hoverable
+            >
+                <Meta title={item.name} />
+            </Card>
+            <Modal
+                title="Edit Product"
+                visible={isModalVisible}
+                onCancel={handleCancel}
+                footer={null}
+            >
+                <ItemForm
+                    initValues={item}
+                    toggleModal={setIsModalVisible}
+                    updateProduct={updateProduct} />
+            </Modal>
+        </>
     );
 }
 
 const mapDispatchToProps = (dispatch: AppDispatch) => {
     return {
+        updateItem: (type: AsyncActionType, url: string, options: {}) =>
+            dispatch(fetchApi(type, url, options)
+        ),
         removeItem: (type: AsyncActionType, url: string, options: {}, payload: string) =>
             dispatch(fetchApi(type, url, options, payload)
         ),
@@ -61,6 +93,7 @@ export default connect(null, mapDispatchToProps)(CardItem);
 
 
 interface CardItemDispatchProps {
+    updateItem: (type: AsyncActionType, url: string, options: {}) => Promise<void>;
     removeItem: (type: AsyncActionType, url: string, options: {}, payload: string) => Promise<void>;
 }
 

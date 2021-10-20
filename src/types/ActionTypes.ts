@@ -32,8 +32,12 @@ export interface AddProductAction extends AsyncAction {
     payload: Product;
 }
 
-export interface RemoveProductAction extends AsyncAction {
+export interface UpdateProductAction extends AsyncAction {
     payload: Product;
+}
+
+export interface RemoveProductAction extends AsyncAction {
+    payload: string;
 }
 
 
@@ -43,19 +47,10 @@ export enum ActionTypes {
     GET_PRODUCTS = "GET_PRODUCTS",
     GET_PRODUCT = "GET_PRODUCT",
     ADD_PRODUCT = "ADD_PRODUCT",
+    UPDATE_PRODUCT = "UPDATE_PRODUCT",
     REMOVE_PRODUCT = "REMOVE_PRODUCT",
     SORT_BY = "SORT_BY"
 }
 
-export type AsyncActionType = ActionTypes.GET_PRODUCTS |
-                              ActionTypes.GET_PRODUCT |
-                              ActionTypes.ADD_PRODUCT |
-                              ActionTypes.REMOVE_PRODUCT;
-
-export type KnownActions = GetProductsAction |
-                           GetProductAction |
-                           AddProductAction |
-                           RemoveProductAction |
-                           SortByAction |
-                           ErrorAction |
-                           LoadingAction;
+export type AsyncActionType = ActionTypes.GET_PRODUCTS | ActionTypes.GET_PRODUCT | ActionTypes.ADD_PRODUCT | ActionTypes.REMOVE_PRODUCT | ActionTypes.UPDATE_PRODUCT;
+export type KnownActions = GetProductsAction | GetProductAction | AddProductAction | UpdateProductAction | RemoveProductAction | SortByAction | ErrorAction | LoadingAction;

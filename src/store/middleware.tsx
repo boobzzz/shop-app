@@ -12,6 +12,7 @@ export const fetchApi = (type: AsyncActionType, url: string, options = {}, paylo
 
         try {
             const res = await fetchJSON(url, options);
+            console.log(res);
             
             dispatch({ type: type, payload: payload ? payload : res.body });
         } catch (err: any) {

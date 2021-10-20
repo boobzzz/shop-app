@@ -55,6 +55,15 @@ export const productsReducer: Reducer<AppState, KnownActions> =
                     (payload as Product)
                 ],
             };
+        case ActionTypes.UPDATE_PRODUCT:
+            return {
+                ...state,
+                products: state.products.map(p =>
+                    p.id === (payload as Product).id
+                        ? p = (payload as Product)
+                        : p
+                ),
+            };
         case ActionTypes.REMOVE_PRODUCT:
             return {
                 ...state,

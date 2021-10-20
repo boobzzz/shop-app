@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 import SortBy from './SortBy';
 import classes from '../styles/Header.module.css';
 
-export const Header: FC<HeaderOwnProps> = ({ showModal }) => (
+export const Header: FC<HeaderOwnProps> = ({ toggleModal }) => (
     <PageHeader
         className={classes.Header}
         title="Products"
@@ -16,12 +16,12 @@ export const Header: FC<HeaderOwnProps> = ({ showModal }) => (
             <Button
                 key="1"
                 icon={<PlusOutlined />}
-                onClick={() => showModal(true)} />
+                onClick={() => toggleModal(true)} />
         ]}
     />
 )
 
 
 interface HeaderOwnProps {
-    showModal: (isVisible: boolean) => void;
+    toggleModal: (isVisible: boolean) => void;
 }
