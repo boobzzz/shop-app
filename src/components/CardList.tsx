@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { List, Modal } from "antd";
 import "antd/dist/antd.css";
 
-import CardItem from "./CardItem";
+import CardListItem from "./CardListItem";
 import { ItemForm } from "./ItemForm";
 import { Spinner } from "../UI/Spinner";
 import { getError, getIsLoading, getProducts, getSorted } from "../store/selectors";
@@ -25,6 +25,12 @@ const CardList: FC<CardListStateProps & CardListDispatchProps & CardListOwnProps
         toggleModal,
         addNewItem
     } = props;
+    const initProd: Product = {
+        id: "",
+        imageUrl: "",
+        name: "",
+        count: 0,
+    };
 
     const handleCancel = () => {
         toggleModal(false);
@@ -72,7 +78,7 @@ const CardList: FC<CardListStateProps & CardListDispatchProps & CardListOwnProps
                     dataSource={sortBy === "az" ? sortedByAZ : sortedByCount}
                     renderItem={(item: Product) => (
                         <List.Item key={item.id}>
-                            <CardItem item={item} />
+                            <CardListItem item={item} />
                         </List.Item>
                     )}
                 />
@@ -84,10 +90,7 @@ const CardList: FC<CardListStateProps & CardListDispatchProps & CardListOwnProps
                 footer={null}
             >
                 <ItemForm
-                    initValues={{
-                        imageUrl: "",
-                        name: "",
-                    } as Product}
+                    initValues={initProd}
                     toggleModal={toggleModal}
                     updateProduct={addNewProduct} />
             </Modal>

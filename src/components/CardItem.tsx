@@ -1,102 +1,56 @@
-import { FC, useState } from "react";
+import { FC, useEffect } from "react";
 import { connect } from "react-redux";
-import { Card, Modal } from "antd";
-import { EditOutlined, EllipsisOutlined, DeleteOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
-import "antd/dist/antd.css";
-
-import { ItemForm } from "./ItemForm";
-import { AppDispatch } from "../store/store";
-import { fetchApi } from "../store/middleware";
-import { ActionTypes, AsyncActionType } from "../types/ActionTypes";
-import { Product } from "../types/BaseItem";
+import { useParams } from "react-router-dom";
 import { PRODS_EP } from "../constants/endpoints";
 
-const { Meta } = Card;
-const { confirm } = Modal;
+import { Spinner } from "../UI/Spinner";
+import { fetchApi } from "../store/middleware";
+import { AppDispatch, AppState } from "../store/store";
+import { RouteParams } from "../App";
+import { getError, getIsLoading, getProduct } from "../store/selectors";
+import { ActionTypes, AsyncActionType } from "../types/ActionTypes";
+import { Product } from "../types/BaseItem";
 
-const CardItem: FC<CardItemDispatchProps & CardItemOwnProps> = ({ item, updateItem, removeItem }) => {
-    const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+const CardItem: FC<CardItemStateProps & CardItemDispatchProps> = (props) => {
+    let { id } = useParams<RouteParams>();
+    const { isLoading, error, product, getItem } = props;
 
-    const handleCancel = () => {
-        setIsModalVisible(false);
-    }
+    useEffect(() => {
+        getItem(ActionTypes.GET_PRODUCT, `${PRODS_EP}?=${id}`)
+    }, [getItem, id])
 
-    const updateProduct = (values: Product) => {
-        const options = {
-            method: "PUT",
-            body: values,
-        }
-        
-        updateItem(ActionTypes.UPDATE_PRODUCT, `${PRODS_EP}/${item.id}`, options);
-    }
+    if (isLoading) return <Spinner />
 
-    const removeProduct = () => {
-        const options = {
-            method: "DELETE",
-        }
-
-        removeItem(ActionTypes.REMOVE_PRODUCT, `${PRODS_EP}/${item.id}`, options, item.id!);
-    }
-
-    const showDeleteConfirm = () => {
-        confirm({
-            title: 'Are you sure you want to delete this item?',
-            icon: <ExclamationCircleOutlined />,
-            okText: 'Yes',
-            okType: 'danger',
-            cancelText: 'No',
-            onOk() {removeProduct()},
-            onCancel() {},
-        });
-    }
+    if (error) return <div>{error}</div>;
 
     return (
-        <>
-            <Card
-                cover={<img alt="example" src={item.imageUrl} />}
-                actions={[
-                    <EllipsisOutlined key="ellipsis" />,
-                    <EditOutlined key="edit" onClick={() => setIsModalVisible(true)} />,
-                    <DeleteOutlined key="delete" onClick={showDeleteConfirm} />,
-                ]}
-                hoverable
-            >
-                <Meta title={item.name} />
-            </Card>
-            <Modal
-                title="Edit Product"
-                visible={isModalVisible}
-                onCancel={handleCancel}
-                footer={null}
-            >
-                <ItemForm
-                    initValues={item}
-                    toggleModal={setIsModalVisible}
-                    updateProduct={updateProduct} />
-            </Modal>
-        </>
+        <div></div>
     );
+}
+
+const mapStateToProps = (state: AppState) => {
+    return {
+        isLoading: getIsLoading(state),
+        error: getError(state),
+        product: getProduct(state),
+    }
 }
 
 const mapDispatchToProps = (dispatch: AppDispatch) => {
     return {
-        updateItem: (type: AsyncActionType, url: string, options: {}) =>
-            dispatch(fetchApi(type, url, options)
-        ),
-        removeItem: (type: AsyncActionType, url: string, options: {}, payload: string) =>
-            dispatch(fetchApi(type, url, options, payload)
-        ),
+        getItem: (type: AsyncActionType, url: string) => dispatch(fetchApi(type, url)),
     }
 }
 
-export default connect(null, mapDispatchToProps)(CardItem);
+export default connect(mapStateToProps, mapDispatchToProps)(CardItem);
 
 
-interface CardItemDispatchProps {
-    updateItem: (type: AsyncActionType, url: string, options: {}) => Promise<void>;
-    removeItem: (type: AsyncActionType, url: string, options: {}, payload: string) => Promise<void>;
+interface CardItemStateProps {
+    isLoading: boolean;
+    error: string;
+    product: Product;
 }
 
-interface CardItemOwnProps {
-    item: Product;
+interface CardItemDispatchProps {
+    getItem: (type: AsyncActionType, url: string) => Promise<void>;
 }

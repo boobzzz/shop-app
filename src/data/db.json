@@ -1,21 +1,6 @@
 {
   "products": [
     {
-      "id": 1,
-      "imageUrl": "https://images.unsplash.com/photo-1597043851759-3b383a6d1c14?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80",
-      "name": "Red wine",
-      "count": 3,
-      "size": {
-        "width": 200,
-        "height": 200
-      },
-      "weight": "1000g",
-      "comments": [
-        "CommentModel",
-        "CommentModel"
-      ]
-    },
-    {
       "id": 2,
       "imageUrl": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2073&q=80",
       "name": "Cheese",
@@ -59,6 +44,17 @@
         "CommentModel",
         "CommentModel"
       ]
+    },
+    {
+      "imageUrl": "https://images.unsplash.com/photo-1597043851759-3b383a6d1c14?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
+      "name": "Red wine",
+      "weight": "1000g",
+      "size": {
+        "width": 20,
+        "height": 40
+      },
+      "count": 5,
+      "id": 5
     }
   ]
 }

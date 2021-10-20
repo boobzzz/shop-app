@@ -1,7 +1,11 @@
 .Header {
-    padding: 0.5em 1.5em;
+    display: flex;
+    height: 68px;
     background-color: lightslategray;
 }
+    .Header > div {
+        width: 100%;
+    }
     .Header span {
         font-weight: 800;
         font-size: 1.5rem;

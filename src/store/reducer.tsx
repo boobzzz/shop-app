@@ -9,6 +9,7 @@ const initialState: AppState = {
     error: "",
     products: [],
     selected: {
+        id: "",
         imageUrl: "",
         name: "",
         count: 0,

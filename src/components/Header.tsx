@@ -6,22 +6,28 @@ import 'antd/dist/antd.css';
 import SortBy from './SortBy';
 import classes from '../styles/Header.module.css';
 
-export const Header: FC<HeaderOwnProps> = ({ toggleModal }) => (
+export const Header: FC<HeaderOwnProps> = ({ title, subtitle, toggleModal }) => (
     <PageHeader
         className={classes.Header}
-        title="Products"
-        subTitle="List of available products"
-        extra={[
-            <SortBy />,
-            <Button
-                key="1"
-                icon={<PlusOutlined />}
-                onClick={() => toggleModal(true)} />
-        ]}
+        title={title}
+        subTitle={subtitle}
+        extra={
+            title === "Products"
+            ? [
+                <SortBy />,
+                <Button
+                    key="1"
+                    icon={<PlusOutlined />}
+                    onClick={() => toggleModal!(true)} />
+            ]
+            : null
+        }
     />
 )
 
 
 interface HeaderOwnProps {
-    toggleModal: (isVisible: boolean) => void;
+    title: string;
+    subtitle?: string;
+    toggleModal?: (isVisible: boolean) => void;
 }

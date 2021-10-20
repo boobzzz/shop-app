@@ -8,7 +8,10 @@ export const List: FC = () => {
 
     return (
         <>
-            <Header toggleModal={setIsModalVisible} />
+            <Header
+                title="Products"
+                subtitle="List of available products"
+                toggleModal={setIsModalVisible} />
             <CardList isModalVisible={isModalVisible} toggleModal={setIsModalVisible} />
         </>
     );
