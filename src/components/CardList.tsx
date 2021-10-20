@@ -4,6 +4,8 @@ import { List, Modal } from "antd";
 import "antd/dist/antd.css";
 
 import CardItem from "./CardItem";
+import { ItemForm } from "./ItemForm";
+import { Spinner } from "../UI/Spinner";
 import { getError, getIsLoading, getProducts, getSorted } from "../store/selectors";
 import { AppDispatch, AppState } from "../store/store";
 import { fetchApi } from "../store/middleware";
@@ -11,7 +13,6 @@ import { ActionTypes, AsyncActionType } from "../types/ActionTypes";
 import { Product } from "../types/BaseItem";
 import { PRODS_EP } from "../constants/endpoints";
 import classes from "../styles/CardList.module.css";
-import { ItemForm } from "./ItemForm";
 
 const CardList: FC<CardListStateProps & CardListDispatchProps & CardListOwnProps> = (props) => {
     const {
@@ -42,7 +43,7 @@ const CardList: FC<CardListStateProps & CardListDispatchProps & CardListOwnProps
         getAllProducts(ActionTypes.GET_PRODUCTS, PRODS_EP);
     }, [getAllProducts]);
 
-    if (isLoading) return <div>...loading</div>;
+    if (isLoading) return <Spinner />
 
     if (error) return <div>{error}</div>;
 
@@ -66,7 +67,7 @@ const CardList: FC<CardListStateProps & CardListDispatchProps & CardListOwnProps
                         md: 4,
                         lg: 4,
                         xl: 6,
-                        xxl: 3,
+                        xxl: 4,
                     }}
                     dataSource={sortBy === "az" ? sortedByAZ : sortedByCount}
                     renderItem={(item: Product) => (
