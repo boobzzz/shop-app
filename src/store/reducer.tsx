@@ -1,8 +1,7 @@
 import { Reducer } from "redux";
 
+import { ActionTypes, KnownActions } from "../types/ActionTypes";
 import { Product } from "../types/BaseItem";
-import { KnownActions } from "./actions";
-import { ActionTypes } from "../types/ActionTypes";
 import { AppState } from "./store";
 
 const initialState: AppState = {
@@ -55,6 +54,13 @@ export const productsReducer: Reducer<AppState, KnownActions> =
                     ...state.products,
                     (payload as Product)
                 ],
+            };
+        case ActionTypes.REMOVE_PRODUCT:
+            return {
+                ...state,
+                products: state.products.filter(p =>
+                    p.id !== payload as string
+                ),
             };
         default:
             return state;

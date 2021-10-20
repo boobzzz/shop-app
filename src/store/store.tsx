@@ -2,8 +2,8 @@ import { createStore, applyMiddleware } from "redux";
 import thunk, { ThunkDispatch } from "redux-thunk";
 
 import { productsReducer } from "./reducer";
+import { KnownActions } from "../types/ActionTypes";
 import { Product } from "../types/BaseItem";
-import { KnownActions } from "./actions";
 
 export const store = createStore(productsReducer, applyMiddleware<AppDispatch, any>(thunk));
 

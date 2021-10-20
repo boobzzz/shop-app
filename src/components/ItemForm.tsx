@@ -98,8 +98,8 @@ export const ItemForm: FC<ItemFormDispatchProps & ItemFormOwnProps> = (props) =>
 
 const mapDispatchToProps = (dispatch: AppDispatch) => {
     return {
-        addNewProduct: (type: AsyncActionType, url: string, options: {}) => (
-            dispatch(fetchApi(type, url, options))
+        addNewProduct: (type: AsyncActionType, url: string, options: {}) =>
+            dispatch(fetchApi(type, url, options)
         ),
     }
 }

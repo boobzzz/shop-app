@@ -1,0 +1,1 @@
+export const PRODS_EP = "http://localhost:8000/products";

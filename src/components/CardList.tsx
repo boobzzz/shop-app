@@ -1,29 +1,30 @@
 import { FC, useEffect } from "react";
 import { connect } from "react-redux";
-import { EditOutlined, EllipsisOutlined, DeleteOutlined } from "@ant-design/icons";
-import { List, Card } from "antd";
+import { List } from "antd";
 import "antd/dist/antd.css";
 
+import CardItem from "./CardItem";
 import { getError, getIsLoading, getProducts, getSorted } from "../store/selectors";
 import { AppDispatch, AppState } from "../store/store";
 import { fetchApi } from "../store/middleware";
 import { ActionTypes, AsyncActionType } from "../types/ActionTypes";
 import { Product } from "../types/BaseItem";
+import { PRODS_EP } from "../constants/endpoints";
 import classes from "../styles/CardList.module.css";
-
-const { Meta } = Card;
 
 const CardList: FC<CardListStateProps & CardListDispatchProps> = (props) => {
     const { isLoading, error, products, sortBy, getAllProducts } = props;
 
     useEffect(() => {
-        getAllProducts(ActionTypes.GET_PRODUCTS, "http://localhost:8000/products");
+        getAllProducts(ActionTypes.GET_PRODUCTS, PRODS_EP);
     }, [getAllProducts]);
 
     if (isLoading) return <div>...loading</div>;
 
     if (error) return <div>{error}</div>;
 
+    console.log(products);
+    
     const prodsAZCopy = JSON.parse(JSON.stringify(products));
     const prodsCountCopy = JSON.parse(JSON.stringify(products));
     const sortedByAZ = prodsAZCopy.sort((p1: Product, p2: Product) =>
@@ -48,22 +49,7 @@ const CardList: FC<CardListStateProps & CardListDispatchProps> = (props) => {
                 dataSource={sortBy === "az" ? sortedByAZ : sortedByCount}
                 renderItem={(item: Product) => (
                     <List.Item key={item.id}>
-                        <Card
-                            cover={
-                                <img
-                                    alt="example"
-                                    src={item.imageUrl}
-                                />
-                            }
-                            actions={[
-                                <EllipsisOutlined key="ellipsis" />,
-                                <EditOutlined key="edit" />,
-                                <DeleteOutlined key="delete" />,
-                            ]}
-                            hoverable
-                        >
-                            <Meta title={item.name} />
-                        </Card>
+                        <CardItem item={item} />
                     </List.Item>
                 )}
             />

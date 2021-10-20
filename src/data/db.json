@@ -59,36 +59,6 @@
         "CommentModel",
         "CommentModel"
       ]
-    },
-    {
-      "imageUrl": "https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-      "name": "Fish",
-      "size": {},
-      "id": 5
-    },
-    {
-      "imageUrl": "https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-      "name": "Fish 2",
-      "size": {},
-      "id": 6
-    },
-    {
-      "imageUrl": "https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-      "name": "Fish 3",
-      "size": {},
-      "id": 7
-    },
-    {
-      "imageUrl": "https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-      "name": "Fish 4",
-      "size": {},
-      "id": 8
-    },
-    {
-      "imageUrl": "https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80",
-      "name": "Fish 5",
-      "size": {},
-      "id": 9
     }
   ]
 }
