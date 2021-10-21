@@ -38,8 +38,8 @@ export const Header: FC<HeaderOwnProps> = ({ isListView, title, subtitle, toggle
 
 
 interface HeaderOwnProps {
+    isListView?: boolean;
     title: string;
     subtitle?: string;
     toggleModal?: (isVisible: boolean) => void;
-    isListView?: boolean;
 }

@@ -21,7 +21,7 @@ const validateMessages = {
     },
 };
 
-export const ItemForm: FC<ItemFormOwnProps> = (props) => {
+export const CardItemForm: FC<ItemFormOwnProps> = (props) => {
     const { initValues, toggleModal, updateProduct } = props;
     
     const onAddBtn = (values: any) => {

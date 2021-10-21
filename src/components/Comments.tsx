@@ -9,7 +9,7 @@ import { ActionTypes, AsyncActionType } from "../types/ActionTypes";
 import { AppDispatch, AppState } from "../store/store";
 import { getIsLoading } from "../store/selectors";
 import { fetchApi } from "../store/middleware";
-import { PRODS_EP } from "../constants/endpoints";
+import { BASE_EP } from "../constants/endpoints";
 import { idGenerator } from "../utils/idGenerator";
 import classes from "../styles/Comments.module.css";
 
@@ -29,7 +29,7 @@ const Comments: FC<CommentsStateToProps & CommentsDispatchToProps & CommentsOwnP
             body: item,
         }
 
-        updateItem(ActionTypes.UPDATE_PRODUCT, `${PRODS_EP}/${id}`, options);
+        updateItem(ActionTypes.UPDATE_PRODUCT, `${BASE_EP}/${id}`, options);
     }
 
     const addNewComment = () => {

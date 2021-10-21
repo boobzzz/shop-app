@@ -5,12 +5,12 @@ import { Card, Modal } from "antd";
 import { EditOutlined, EllipsisOutlined, DeleteOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 
-import { ItemForm } from "./ItemForm";
+import { CardItemForm } from "./CardItemForm";
 import { AppDispatch } from "../store/store";
 import { fetchApi } from "../store/middleware";
 import { ActionTypes, AsyncActionType } from "../types/ActionTypes";
 import { Product } from "../types/BaseItem";
-import { PRODS_EP } from "../constants/endpoints";
+import { BASE_EP } from "../constants/endpoints";
 
 const { Meta } = Card;
 const { confirm } = Modal;
@@ -28,7 +28,7 @@ const CardListItem: FC<CardItemDispatchProps & CardItemOwnProps> = ({ item, upda
             body: values,
         }
         
-        updateItem(ActionTypes.UPDATE_PRODUCT, `${PRODS_EP}/${item.id}`, options);
+        updateItem(ActionTypes.UPDATE_PRODUCT, `${BASE_EP}/${item.id}`, options);
     }
 
     const removeProduct = () => {
@@ -36,7 +36,7 @@ const CardListItem: FC<CardItemDispatchProps & CardItemOwnProps> = ({ item, upda
             method: "DELETE",
         }
 
-        removeItem(ActionTypes.REMOVE_PRODUCT, `${PRODS_EP}/${item.id}`, options, item.id!);
+        removeItem(ActionTypes.REMOVE_PRODUCT, `${BASE_EP}/${item.id}`, options, item.id!);
     }
 
     const showDeleteConfirm = () => {
@@ -76,7 +76,7 @@ const CardListItem: FC<CardItemDispatchProps & CardItemOwnProps> = ({ item, upda
                 onCancel={handleCancel}
                 footer={null}
             >
-                <ItemForm
+                <CardItemForm
                     initValues={item}
                     toggleModal={setIsModalVisible}
                     updateProduct={updateProduct} />

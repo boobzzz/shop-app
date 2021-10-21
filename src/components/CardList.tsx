@@ -4,14 +4,14 @@ import { List, Modal } from "antd";
 import "antd/dist/antd.css";
 
 import CardListItem from "./CardListItem";
-import { ItemForm } from "./ItemForm";
+import { CardItemForm } from "./CardItemForm";
 import { Spinner } from "../UI/Spinner";
 import { getError, getIsLoading, getProducts, getSorted } from "../store/selectors";
 import { AppDispatch, AppState } from "../store/store";
 import { fetchApi } from "../store/middleware";
 import { ActionTypes, AsyncActionType } from "../types/ActionTypes";
 import { Product } from "../types/BaseItem";
-import { PRODS_EP } from "../constants/endpoints";
+import { BASE_EP } from "../constants/endpoints";
 import classes from "../styles/CardList.module.css";
 
 const CardList: FC<CardListStateProps & CardListDispatchProps & CardListOwnProps> = (props) => {
@@ -42,25 +42,16 @@ const CardList: FC<CardListStateProps & CardListDispatchProps & CardListOwnProps
             body: values
         };
 
-        addNewItem(ActionTypes.ADD_PRODUCT, PRODS_EP, options);
+        addNewItem(ActionTypes.ADD_PRODUCT, BASE_EP, options);
     }
 
     useEffect(() => {
-        getAllProducts(ActionTypes.GET_PRODUCTS, PRODS_EP);
-    }, [getAllProducts]);
+        getAllProducts(ActionTypes.GET_PRODUCTS, `${BASE_EP}${sortBy}`);
+    }, [getAllProducts, sortBy]);
 
     if (isLoading) return <Spinner />
 
     if (error) return <div>{error}</div>;
-
-    const prodsAZCopy = JSON.parse(JSON.stringify(products));
-    const prodsCountCopy = JSON.parse(JSON.stringify(products));
-    const sortedByAZ = prodsAZCopy.sort((p1: Product, p2: Product) =>
-        p1.name.toLowerCase().localeCompare(p2.name.toLowerCase())
-    );
-    const sortedByCount = prodsCountCopy.sort((p1: Product, p2: Product) =>
-        p2.count - p1.count
-    );
 
     return (
         <>
@@ -75,7 +66,7 @@ const CardList: FC<CardListStateProps & CardListDispatchProps & CardListOwnProps
                         xl: 6,
                         xxl: 4,
                     }}
-                    dataSource={sortBy === "az" ? sortedByAZ : sortedByCount}
+                    dataSource={products}
                     renderItem={(item: Product) => (
                         <List.Item key={item.id}>
                             <CardListItem item={item} />
@@ -89,7 +80,7 @@ const CardList: FC<CardListStateProps & CardListDispatchProps & CardListOwnProps
                 onCancel={handleCancel}
                 footer={null}
             >
-                <ItemForm
+                <CardItemForm
                     initValues={initProd}
                     toggleModal={toggleModal}
                     updateProduct={addNewProduct} />

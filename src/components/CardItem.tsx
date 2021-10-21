@@ -11,7 +11,7 @@ import { RouteParams } from "../App";
 import { getError, getIsLoading, getProduct } from "../store/selectors";
 import { ActionTypes, AsyncActionType } from "../types/ActionTypes";
 import { Product } from "../types/BaseItem";
-import { PRODS_EP } from "../constants/endpoints";
+import { BASE_EP } from "../constants/endpoints";
 import classes from "../styles/CardItem.module.css";
 
 const CardItem: FC<CardItemStateProps & CardItemDispatchProps> = (props) => {
@@ -19,7 +19,7 @@ const CardItem: FC<CardItemStateProps & CardItemDispatchProps> = (props) => {
     const { isLoading, error, product, getItem } = props;
 
     useEffect(() => {
-        getItem(ActionTypes.GET_PRODUCT, `${PRODS_EP}?id=${id}`)
+        getItem(ActionTypes.GET_PRODUCT, `${BASE_EP}?id=${id}`)
     }, [getItem, id])
 
     if (isLoading) return <Spinner />

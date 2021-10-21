@@ -11,7 +11,7 @@
 .Select {
     display: flex;
     align-items: center;
-    width: 100px;
+    width: 120px;
 }
     .Select span {
         font-weight: 600;

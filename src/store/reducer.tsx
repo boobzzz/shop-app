@@ -1,4 +1,5 @@
 import { Reducer } from "redux";
+import { SortOptions } from "../components/SortBy";
 
 import { ActionTypes, KnownActions } from "../types/ActionTypes";
 import { Product } from "../types/BaseItem";
@@ -7,7 +8,7 @@ import { AppState } from "./store";
 const initialState: AppState = {
     isLoading: false,
     error: "",
-    sortBy: "az",
+    sortBy: SortOptions.AZ_ASC,
     products: [],
     product: {
         id: "",
@@ -36,7 +37,7 @@ export const productsReducer: Reducer<AppState, KnownActions> =
         case ActionTypes.SORT_BY:
             return {
                 ...state,
-                sortBy: payload as string,
+                sortBy: payload as SortOptions,
             };
         case ActionTypes.GET_PRODUCTS:
             return {

@@ -6,10 +6,17 @@ import { AppDispatch } from "../store/store";
 import { sortBy } from "../store/actions";
 import classes from "../styles/SortBy.module.css";
 
+export enum SortOptions {
+    AZ_ASC = "?_sort=name&_order=asc",
+    AZ_DESC = "?_sort=name&_order=desc",
+    COUNT_ASC = "?_sort=count&_order=asc",
+    COUNT_DESC = "?_sort=count&_order=desc",
+}
+
 const { Option } = Select;
 
 const SortBy: FC<CardListDispatchProps> = ({ sortBy }) => {
-    const handleChange = (value: string) => {
+    const handleChange = (value: SortOptions) => {
         sortBy(value);
     }
 
@@ -19,10 +26,12 @@ const SortBy: FC<CardListDispatchProps> = ({ sortBy }) => {
             <Select
                 className={classes.Select}
                 onChange={handleChange}
-                defaultValue="az"
+                defaultValue={SortOptions.AZ_ASC}
                 showSearch={false}>
-                <Option value="az">a-z</Option>
-                <Option value="count">count</Option>
+                <Option value={SortOptions.AZ_ASC}>a-z</Option>
+                <Option value={SortOptions.AZ_DESC}>z-a</Option>
+                <Option value={SortOptions.COUNT_ASC}>count asc</Option>
+                <Option value={SortOptions.COUNT_DESC}>count desc</Option>
             </Select>
         </div>
     );
