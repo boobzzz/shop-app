@@ -12,7 +12,7 @@ export interface AppState {
     isLoading: boolean;
     error: string;
     products: Product[];
-    selected: Product;
+    product: Product;
     sortBy: string;
 }
 

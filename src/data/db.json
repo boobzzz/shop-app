@@ -1,22 +1,7 @@
 {
   "products": [
     {
-      "id": 2,
-      "imageUrl": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2073&q=80",
-      "name": "Cheese",
-      "count": 3,
-      "size": {
-        "width": 200,
-        "height": 200
-      },
-      "weight": "1000g",
-      "comments": [
-        "CommentModel",
-        "CommentModel"
-      ]
-    },
-    {
-      "id": 3,
+      "id": "3",
       "imageUrl": "https://images.unsplash.com/photo-1586765501019-cbe3973ef8fa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2068&q=80",
       "name": "Bread",
       "count": 1,
@@ -26,12 +11,16 @@
       },
       "weight": "1000g",
       "comments": [
-        "CommentModel",
-        "CommentModel"
+        {
+          "id": "1",
+          "productId": "3",
+          "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore, velit omnis soluta veniam placeat consequuntur iure harum!",
+          "date": "14:00 22.08.2021"
+        }
       ]
     },
     {
-      "id": 4,
+      "id": "4",
       "imageUrl": "https://images.unsplash.com/photo-1596793393770-82081fca1471?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80",
       "name": "Milk",
       "count": 1,
@@ -41,20 +30,48 @@
       },
       "weight": "1000g",
       "comments": [
-        "CommentModel",
-        "CommentModel"
+        {
+          "id": "1",
+          "productId": "4",
+          "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore, velit omnis soluta veniam placeat consequuntur iure harum!",
+          "date": "14:00 22.08.2021"
+        },
+        {
+          "id": "2",
+          "productId": "4",
+          "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore, velit omnis soluta veniam placeat consequuntur iure harum!",
+          "date": "14:00 22.08.2021"
+        },
+        {
+          "id": "3",
+          "productId": "4",
+          "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore, velit omnis soluta veniam placeat consequuntur iure harum!",
+          "date": "14:00 22.08.2021"
+        }
       ]
     },
     {
+      "id": "5",
       "imageUrl": "https://images.unsplash.com/photo-1597043851759-3b383a6d1c14?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80",
       "name": "Red wine",
-      "weight": "1000g",
       "size": {
         "width": 20,
         "height": 40
       },
+      "weight": "1000g",
       "count": 5,
-      "id": 5
+      "comments": []
+    },
+    {
+      "id": "Q8_29z3",
+      "imageUrl": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1173&q=80",
+      "name": "Cheese",
+      "count": 10,
+      "weight": "500g",
+      "size": {
+        "width": 100,
+        "height": 100
+      }
     }
   ]
 }

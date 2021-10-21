@@ -7,14 +7,14 @@ import { AppState } from "./store";
 const initialState: AppState = {
     isLoading: false,
     error: "",
+    sortBy: "az",
     products: [],
-    selected: {
+    product: {
         id: "",
         imageUrl: "",
         name: "",
         count: 0,
     },
-    sortBy: "az",
 };
 
 export const productsReducer: Reducer<AppState, KnownActions> =
@@ -46,7 +46,7 @@ export const productsReducer: Reducer<AppState, KnownActions> =
         case ActionTypes.GET_PRODUCT:
             return {
                 ...state,
-                selected: payload as Product,
+                product: (payload as Product[])[0],
             };
         case ActionTypes.ADD_PRODUCT:
             return {
@@ -64,6 +64,7 @@ export const productsReducer: Reducer<AppState, KnownActions> =
                         ? p = (payload as Product)
                         : p
                 ),
+                product: (payload as Product),
             };
         case ActionTypes.REMOVE_PRODUCT:
             return {

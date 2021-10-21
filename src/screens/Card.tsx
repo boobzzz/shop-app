@@ -6,12 +6,11 @@ import CardItem from "../components/CardItem";
 import { RouteParams } from "../App";
 
 export const Card: FC = () => {
-    let { id, name } = useParams<RouteParams>();
-    console.log(id, name);
+    let { name } = useParams<RouteParams>();
     
     return (
         <>
-            <Header title="Product:" subtitle={name} />
+            <Header title="Product info:" subtitle={name} />
             <CardItem />
         </>
     );

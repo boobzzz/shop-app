@@ -44,12 +44,12 @@ export interface RemoveProductAction extends AsyncAction {
 export enum ActionTypes {
     LOADING = "LOADING",
     ERROR = "ERROR",
+    SORT_BY = "SORT_BY",
     GET_PRODUCTS = "GET_PRODUCTS",
     GET_PRODUCT = "GET_PRODUCT",
     ADD_PRODUCT = "ADD_PRODUCT",
     UPDATE_PRODUCT = "UPDATE_PRODUCT",
     REMOVE_PRODUCT = "REMOVE_PRODUCT",
-    SORT_BY = "SORT_BY"
 }
 
 export type AsyncActionType = ActionTypes.GET_PRODUCTS | ActionTypes.GET_PRODUCT | ActionTypes.ADD_PRODUCT | ActionTypes.REMOVE_PRODUCT | ActionTypes.UPDATE_PRODUCT;

@@ -11,7 +11,8 @@ export const List: FC = () => {
             <Header
                 title="Products"
                 subtitle="List of available products"
-                toggleModal={setIsModalVisible} />
+                toggleModal={setIsModalVisible}
+                isListView />
             <CardList isModalVisible={isModalVisible} toggleModal={setIsModalVisible} />
         </>
     );
