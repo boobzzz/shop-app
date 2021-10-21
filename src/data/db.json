@@ -41,12 +41,6 @@
           "productId": "4",
           "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore, velit omnis soluta veniam placeat consequuntur iure harum!",
           "date": "14:00 22.08.2021"
-        },
-        {
-          "id": "3",
-          "productId": "4",
-          "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore, velit omnis soluta veniam placeat consequuntur iure harum!",
-          "date": "14:00 22.08.2021"
         }
       ]
     },
@@ -60,7 +54,20 @@
       },
       "weight": "1000g",
       "count": 5,
-      "comments": []
+      "comments": [
+        {
+          "id": "f220c7b1-ac84-f255-d175-a7a1b211b2fe",
+          "productId": "5",
+          "description": "Initial comment for testing purposes",
+          "date": "13:32 21.10.2021"
+        },
+        {
+          "id": "add54d90-173d-415f-27f9-dcb025738287",
+          "productId": "5",
+          "description": "Another comment for testing purposes",
+          "date": "13:33 21.10.2021"
+        }
+      ]
     },
     {
       "id": "Q8_29z3",
@@ -71,7 +78,27 @@
       "size": {
         "width": 100,
         "height": 100
-      }
+      },
+      "comments": [
+        {
+          "id": "9bd75530-7614-1db7-ea22-db129ecf9c26",
+          "productId": "Q8_29z3",
+          "description": "Initial comment",
+          "date": "13:31 21.10.2021"
+        },
+        {
+          "id": "565a8e4e-fad1-efb8-6ba3-117b6e2b22cb",
+          "productId": "Q8_29z3",
+          "description": "Initial comment",
+          "date": "13:31 21.10.2021"
+        },
+        {
+          "id": "d15d8c8a-571c-92c3-8b02-53dbdbece5c7",
+          "productId": "Q8_29z3",
+          "description": "Initial comment for testing purposes",
+          "date": "13:32 21.10.2021"
+        }
+      ]
     }
   ]
 }
