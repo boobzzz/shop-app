@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/inforce-product-list/static/css/main.15a57c31.chunk.css",
+    "main.js": "/inforce-product-list/static/js/main.bd73e84e.chunk.js",
+    "main.js.map": "/inforce-product-list/static/js/main.bd73e84e.chunk.js.map",
+    "runtime-main.js": "/inforce-product-list/static/js/runtime-main.eda9162d.js",
+    "runtime-main.js.map": "/inforce-product-list/static/js/runtime-main.eda9162d.js.map",
+    "static/css/2.a95be28f.chunk.css": "/inforce-product-list/static/css/2.a95be28f.chunk.css",
+    "static/js/2.88b4e6da.chunk.js": "/inforce-product-list/static/js/2.88b4e6da.chunk.js",
+    "static/js/2.88b4e6da.chunk.js.map": "/inforce-product-list/static/js/2.88b4e6da.chunk.js.map",
+    "static/js/3.a03ce372.chunk.js": "/inforce-product-list/static/js/3.a03ce372.chunk.js",
+    "static/js/3.a03ce372.chunk.js.map": "/inforce-product-list/static/js/3.a03ce372.chunk.js.map",
+    "index.html": "/inforce-product-list/index.html",
+    "static/css/2.a95be28f.chunk.css.map": "/inforce-product-list/static/css/2.a95be28f.chunk.css.map",
+    "static/css/main.15a57c31.chunk.css.map": "/inforce-product-list/static/css/main.15a57c31.chunk.css.map",
+    "static/js/2.88b4e6da.chunk.js.LICENSE.txt": "/inforce-product-list/static/js/2.88b4e6da.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.eda9162d.js",
+    "static/css/2.a95be28f.chunk.css",
+    "static/js/2.88b4e6da.chunk.js",
+    "static/css/main.15a57c31.chunk.css",
+    "static/js/main.bd73e84e.chunk.js"
+  ]
+}
