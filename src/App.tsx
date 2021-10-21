@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 import { List } from "./screens/List";
 import { Card } from "./screens/Card";
